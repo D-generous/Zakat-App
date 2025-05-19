@@ -1,0 +1,104 @@
+<app-header></app-header>
+
+<section
+  class="relative bg-teal-600 text-white flex flex-col items-center justify-center text-center py-10 md:py-20 px-4 sm:px-6 lg:px-8 min-h-[55vh] sm:min-h-[320px] md:min-h-[360px] lg:min-h-[400px] overflow-hidden">
+
+  <!-- Faint Background Image Layer -->
+  <div
+    class="absolute inset-0 w-full h-full bg-cover bg-bottom bg-no-repeat opacity-20 md:opacity-30"
+    >
+  </div>
+
+  <!-- Content Layer (ensure it's above the background image) -->
+  <div class="relative z-10 max-w-3xl mx-auto">
+    <h1 class="text-4xl sm:text-5xl md:text-6xl lg:text-6xl font-bold leading-tight sm:leading-tight md:leading-tight">
+      Give Zakat. Fulfill a Pillar.<br>Change Lives.
+    </h1>
+    <p class="mt-6 text-lg sm:text-xl md:text-2xl max-w-xl mx-auto">
+      Your contribution makes a real difference. Join us in supporting our community.
+    </p>
+    <button
+      type="button"
+      class="mt-8 sm:mt-10 bg-yellow-400 text-black font-semibold px-8 py-3 sm:px-10 sm:py-4 rounded-full text-lg sm:text-xl
+              hover:bg-yellow-500 hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-yellow-300 focus:ring-opacity-75
+             transition-colors duration-300 ease-in-out">
+      Calculate Your Zakat Now
+    </button>
+  </div>
+</section>
+
+<!-- Zakat Cards -->
+<div class="container mx-auto px-4 py-8">
+    <h1 class="text-center text-4xl font-bold text-teal-600 mb-12">Understanding Zakat</h1>
+    
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div *ngFor="let card of zakatCards" class="bg-white rounded-lg shadow-md p-6 flex flex-col items-start">
+        <div class="flex gap-4">
+            <div [ngClass]="card.icon" class="text-teal-600 text-3xl mb-4"></div>
+            <h2 class="text-xl font-semibold text-teal-600 mb-4">{{ card.title }}</h2>
+        </div>
+        <p class="text-gray-600">{{ card.description }}</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Impact Section -->
+
+  <div class="container mx-auto px-4 py-8">
+    <h1 class="text-center text-4xl font-bold text-teal-600 mb-12">Understanding Zakat</h1>
+    
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div *ngFor="let impact of impactCards" class="bg-white rounded-lg shadow-md p-6 flex flex-col items-center">
+        <div  class="text-teal-600 text-3xl mb-4 bg-teal-100 p-3 rounded-full w-16 h-16 flex items-center justify-center">
+            <p [ngClass]="impact.icon" class=""></p>
+        
+        </div>
+        <h2 class="text-4xl font-bold text-teal-600 mb-4">{{ impact.title }}</h2>
+        <p></p>
+        <p class="text-gray-800 text-xl font-bold">{{ impact.description }}</p>
+        <p class="text-gray-600 text-sm">{{ impact.importance }}</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Ready to make a difference -->
+
+  <section class="py-16 lg:py-24 bg-teal-600 text-white">
+    <div class="container mx-auto px-4 text-center">
+      <div class="flex justify-center items-center gap-4 mb-6">
+         <!-- Font Awesome Moon Icon -->
+         <i class="fas fa-moon fa-fw text-yellow-400 text-2xl md:text-3xl"></i>
+         <!--
+              Alternative sizing if fa-2x isn't quite right:
+              <i class="fas fa-moon text-yellow-400" style="font-size: 2rem;"></i>
+              OR using Tailwind text size:
+              <i class="fas fa-moon text-yellow-400 text-3xl"></i> (Adjust text-3xl as needed to match h-8)
+              The h-8 w-8 was 2rem, text-3xl is 1.875rem, text-4xl is 2.25rem. So text-3xl or text-4xl might be close.
+              Let's use text-2xl md:text-3xl for responsive sizing similar to h-8.
+              fa-fw adds fixed-width, good for alignment.
+         -->
+  
+         <h2 class="text-3xl md:text-4xl font-bold">
+          Ready to Make a Difference?
+         </h2>
+  
+         <!-- Font Awesome Star Icon -->
+         <i class="fas fa-star fa-fw text-yellow-400 text-2xl md:text-3xl"></i>
+      </div>
+      <p class="text-lg md:text-xl mb-8 max-w-2xl mx-auto text-white/90">
+        Your Zakat has the power to transform lives. Join the Zakat Bloom community today and fulfill your obligation with ease and impact.
+      </p>
+      <button
+        type="button"
+        class="bg-yellow-400 text-black hover:bg-yellow-500
+               px-10 py-3 text-lg font-semibold rounded-full shadow-lg
+               transition duration-300 ease-in-out transform hover:scale-105">
+        Donate Your Zakat Now
+      </button>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <app-footer></app-footer>
+
+  

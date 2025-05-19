@@ -1,0 +1,42 @@
+<div class="rounded-lg border bg-card text-card-foreground shadow-xl">
+    <div class="flex flex-col space-y-1.5 p-6">
+      <h3 class="text-2xl font-semibold leading-none tracking-tight text-primary flex items-center gap-2">
+        Zakat Calculator
+      </h3>
+      <p class="text-sm text-muted-foreground">Enter your asset values in Naira to calculate your Zakat.</p>
+    </div>
+    <div class="p-6 pt-0">
+      
+    </div>
+    
+  
+    <ng-container *ngIf="calculationResult">
+      <hr class="my-6 border-border" />
+      <div class="flex flex-col items-start space-y-4 bg-secondary/20 p-6 rounded-b-lg">
+        <h3 class="text-xl font-semibold text-primary">Calculation Results:</h3>
+        <div class="w-full space-y-2 text-foreground/90">
+       
+          <hr class="my-2 border-border" />
+          <ng-container *ngIf="calculationResult.isNisabMet; else notMet">
+            <div class="p-4 rounded-md bg-accent/20 border border-accent text-accent-foreground">
+              <p class="text-2xl font-bold flex items-center gap-2">
+                
+              <p class="text-sm mt-1">This is 2.5% of your Net Zakatable Assets.</p>
+            </div>
+          </ng-container>
+          <ng-template #notMet>
+            <div class="p-4 rounded-md bg-muted border border-muted-foreground/50 text-muted-foreground">
+              <p class="text-lg font-semibold flex items-center gap-2">
+                
+                Zakat is not due.
+              </p>
+              <p class="text-sm mt-1">Your Net Zakatable Assets are below the Nisab threshold.</p>
+            </div>
+          </ng-template>
+        </div>
+         <p class="text-xs text-muted-foreground mt-4">
+            Note: Please ensure the Nisab threshold is accurate based on current market prices of gold (85g) or silver (595g). Consult with a knowledgeable scholar if unsure.
+        </p>
+      </div>
+    </ng-container>
+  </div>

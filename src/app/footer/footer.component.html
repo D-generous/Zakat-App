@@ -1,0 +1,51 @@
+<footer class="bg-gray-800 text-gray-300 py-12">
+    <div class="container mx-auto px-4">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
+        <!-- About/Brand -->
+        <div>
+          <h3 class="text-xl font-semibold text-white mb-3">Zakat Bloom</h3>
+          <p class="text-sm">Fulfilling a pillar, empowering communities. Your trusted partner in Zakat distribution.</p>
+        </div>
+  
+        <!-- Quick Links -->
+        <div>
+          <h4 class="text-lg font-semibold text-white mb-3">Quick Links</h4>
+          <ul class="space-y-2 text-sm">
+            <li *ngFor="let link of quickLinks">
+              <a [routerLink]="link.path" class="hover:text-yellow-400 transition-colors">{{ link.label }}</a>
+              <!-- If any are external links, use href:
+              <li><a href="https://example.com/faq" target="_blank" rel="noopener noreferrer" class="hover:text-yellow-400 transition-colors">External FAQ</a></li>
+              -->
+            </li>
+          </ul>
+        </div>
+  
+        <!-- Contact Info -->
+        <div>
+          <h4 class="text-lg font-semibold text-white mb-3">Contact Us</h4>
+          <ul class="space-y-2 text-sm">
+            <li class="flex items-center gap-2">
+              <!-- Font Awesome Mail Icon -->
+              <i class="fas fa-envelope fa-fw text-yellow-400"></i>
+              <a href="mailto:info@zakatbloom.org" class="hover:text-yellow-400 transition-colors">infozakatbloom.org</a>
+            </li>
+            <li class="flex items-center gap-2">
+              <!-- Font Awesome Phone Icon -->
+              <i class="fas fa-phone fa-fw text-yellow-400"></i>
+              <span>+1 (123) 456-7890</span>
+            </li>
+             <li class="flex items-start gap-2">
+              <!-- Font Awesome MapPin Icon -->
+              <i class="fas fa-map-marker-alt fa-fw text-yellow-400 mt-1"></i>
+              <span>123 Charity Lane, Faith City, 10001</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+  
+      <!-- Copyright -->
+      <div class="border-t border-gray-700 pt-8 text-center text-sm">
+        <p> {{ currentYear }} Zakat Bloom. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>

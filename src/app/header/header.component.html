@@ -1,0 +1,60 @@
+
+
+  <header class="sticky top-0 z-50 w-full bg-teal-500 shadow-lg text-white">
+      <div class="container mx-auto flex h-20 items-center justify-between px-4 sm:px-6 lg:px-8">
+        <!-- Logo and Brand Name -->
+        <a href="/" class="flex items-center gap-3 group">
+          <!-- Beautiful SVG Logo -->
+          <div class="p-2 bg-white/20 rounded-full group-hover:bg-white/30 transition-all duration-300 ease-in-out transform group-hover:scale-110">
+            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-8 w-8 text-white">
+              <!-- Using the provided Leaf icon - it's quite nice! -->
+              <path d="M11 20A7 7 0 0 1 4 13H2a9 9 0 0 0 18 0h-2a7 7 0 0 1-7 7Z"></path>
+              <path d="M12 13V3"></path>
+              <path d="M18.36 7.64A7.73 7.73 0 0 0 12 3V13l6.36-6.36Z"></path>
+              <path d="M5.64 7.64A7.73 7.73 0 0 1 12 3V13L5.64 7.64Z"></path>
+            </svg>
+          </div>
+          <span class="text-2xl font-bold tracking-tight group-hover:text-teal-100 transition-colors duration-300">
+            Zakat Bloom
+          </span>
+        </a>
+
+        <!-- Navigation Links -->
+        <nav class="hidden md:flex items-center space-x-2 lg:space-x-4">
+          <a href="#" class="text-teal-100 hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-colors duration-300 ease-in-out hover:bg-teal-600/50">Home</a>
+          <a href="#" class="text-teal-100 hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-colors duration-300 ease-in-out hover:bg-teal-600/50">About Us</a>
+          <a href="#" class="text-teal-100 hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-colors duration-300 ease-in-out hover:bg-teal-600/50">Causes</a>
+          <a href="#" class="text-teal-100 hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-colors duration-300 ease-in-out hover:bg-teal-600/50">Get Involved</a>
+          <a href="#" class="bg-white text-teal-600 hover:bg-teal-50 px-4 py-2 rounded-md text-sm font-semibold shadow-sm transition-colors duration-300 ease-in-out hover:shadow-md">
+              Donate Now
+          </a>
+        </nav>
+
+        <!-- Mobile Menu Button -->
+        <div class="md:hidden">
+          <button type="button" id="mobile-menu-button" class="inline-flex items-center justify-center p-2 rounded-md text-teal-200 hover:text-white hover:bg-teal-600 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white" aria-controls="mobile-menu" aria-expanded="false">
+            <span class="sr-only">Open main menu</span>
+            <svg class="block h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true" id="menu-icon">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+            <svg class="hidden h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true" id="close-icon">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- Mobile menu, show/hide based on menu state. -->
+      <div class="md:hidden hidden" id="mobile-menu">
+        <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+          <a href="#" class="text-teal-100 hover:bg-teal-600 hover:text-white block px-3 py-2 rounded-md text-base font-medium transition-colors duration-300 ease-in-out">Home</a>
+          <a href="#" class="text-teal-100 hover:bg-teal-600 hover:text-white block px-3 py-2 rounded-md text-base font-medium transition-colors duration-300 ease-in-out">About Us</a>
+          <a href="#" class="text-teal-100 hover:bg-teal-600 hover:text-white block px-3 py-2 rounded-md text-base font-medium transition-colors duration-300 ease-in-out">Causes</a>
+          <a href="#" class="text-teal-100 hover:bg-teal-600 hover:text-white block px-3 py-2 rounded-md text-base font-medium transition-colors duration-300 ease-in-out">Get Involved</a>
+          <a href="#" class="bg-white text-teal-600 hover:bg-teal-50 block w-full text-left px-3 py-2 mt-2 rounded-md text-base font-semibold shadow-sm transition-colors duration-300 ease-in-out">
+              Donate Now
+          </a>
+        </div>
+      </div>
+  </header>
+

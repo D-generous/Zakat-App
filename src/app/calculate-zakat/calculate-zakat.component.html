@@ -1,0 +1,131 @@
+<div class="bg-[#e0f7f7] min-h-screen py-8 px-4">
+<div class="w-full max-w-3xl mx-auto shadow-xl rounded-lg bg-white">
+    <div class="text-center p-6 sm:p-8">
+      <div class="flex items-center justify-center mb-4">
+        <fa-icon [icon]="faClock" class="w-16 h-16 text-primary"></fa-icon>
+      </div>
+      <h1 class="text-3xl font-bold text-primary">Zakat Calculator</h1>
+      <p class="text-lg text-muted-foreground mt-1">
+        Determine your Zakat obligation with clarity and ease.
+      </p>
+    </div>
+  
+    <div class="p-6 sm:p-8">
+      <form [formGroup]="zakatForm" (ngSubmit)="onSubmit()" class="space-y-8">
+        <div *ngFor="let section of inputSections; let sectionIndex = index">
+          <div class="flex items-center mb-4">
+            <fa-icon [icon]="section.icon" class="h-6 w-6 text-primary mr-3"></fa-icon>
+            <h3 class="text-xl font-semibold text-primary">{{ section.title }}</h3>
+          </div>
+          <hr class="mb-6 border-primary/20" />
+  
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-6">
+            <div *ngFor="let field of section.fields">
+              <div>
+                <label [for]="field.name" class="block text-sm font-medium text-gray-700 mb-1">
+                  {{ field.label }}
+                  <span *ngIf="field.tooltip" class="group relative inline-block ml-1">
+                    <fa-icon [icon]="faCircleInfo" class="h-4 w-4 text-gray-400 cursor-help"></fa-icon>
+                    <span class="absolute left-1/2 -translate-x-1/2 bottom-full mb-2 w-max max-w-xs p-2 text-xs text-white bg-gray-700 rounded-md opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none z-10">
+                      {{ field.tooltip }}
+                    </span>
+                  </span>
+                </label>
+                <div class="mt-1 relative rounded-md shadow-sm">
+                  <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                    <fa-icon [icon]="field.icon" class="h-5 w-5 text-gray-400"></fa-icon>
+                  </div>
+                  <input
+                    type="text" 
+                    [name]="field.name"
+                    [id]="field.name"
+                    formControlName="{{field.name}}"
+                    class="block w-full pl-10 pr-3 py-2 border rounded-md placeholder-gray-400 focus:outline-none focus:ring-primary focus:border-primary sm:text-sm"
+                    [ngClass]="{'border-gray-300': !isFieldInvalid(field.name), 'border-red-500 focus:ring-red-500 focus:border-red-500': isFieldInvalid(field.name)}"
+                    [placeholder]="field.placeholder"
+                    inputmode="decimal"
+                    autocomplete="off"
+                  />
+                </div>
+                <div *ngIf="isFieldInvalid(field.name)" class="mt-1 text-xs text-red-600">
+                  Please enter a valid number.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+  
+        <button
+          type="submit"
+          class="w-full flex items-center justify-center bg-accent text-accent-foreground hover:bg-accent/90 text-lg py-3 px-4 rounded-lg shadow-md transition-all duration-150 ease-in-out transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-accent/80 disabled:opacity-70 disabled:cursor-not-allowed"
+          [disabled]="isLoading"
+        >
+          <ng-container *ngIf="isLoading; else calculateText">
+            <fa-icon [icon]="faSpinner" class="mr-2 h-5 w-5 animate-spin"></fa-icon>
+            Calculating...
+          </ng-container>
+          <ng-template #calculateText>
+            <fa-icon [icon]="faCalculator" class="mr-2 h-5 w-5"></fa-icon>
+            Calculate Zakat
+          </ng-template>
+        </button>
+      </form>
+  
+      <div *ngIf="zakatResults" class="mt-10 p-6 bg-primary/5 border border-primary/20 rounded-lg shadow">
+        <div class="flex items-center mb-4">
+          <fa-icon [icon]="faShieldHalved" class="h-8 w-8 text-primary mr-3"></fa-icon>
+          <h3 class="text-2xl font-semibold text-primary">Zakat Summary</h3>
+        </div>
+        <hr class="mb-6 border-primary/20"/>
+        <div class="space-y-3 text-base">
+          <div class="flex justify-between items-center">
+            <span class="text-gray-600">Nisab Threshold (Illustrative)</span>
+            <span class="font-medium text-gray-800">{{ formatCurrency(zakatResults.nisabThreshold) }}</span>
+          </div>
+          <div class="flex justify-between items-center">
+            <span class="text-gray-600">Total Zakatable Assets</span>
+            <span class="font-medium text-gray-800">{{ formatCurrency(zakatResults.totalZakatableAssets) }}</span>
+          </div>
+          <div class="flex justify-between items-center">
+            <span class="text-gray-600">Total Deductibles</span>
+            <span class="font-medium text-gray-800">{{ formatCurrency(zakatResults.totalDeductibles) }}</span>
+          </div>
+          <hr class="my-3 border-primary/10" />
+          <div class="flex justify-between items-center font-semibold">
+            <span class="text-gray-700">Net Zakatable Wealth</span>
+            <span class="text-primary">{{ formatCurrency(zakatResults.netZakatableWealth) }}</span>
+          </div>
+  
+          <ng-container *ngIf="zakatResults.isZakatDue; else zakatNotDue">
+            <div class="p-4 rounded-md bg-green-50 border border-green-300 text-green-700">
+              <div class="flex items-center font-semibold">
+                <fa-icon [icon]="faShieldHalved" class="h-5 w-5 mr-2"></fa-icon>
+                Zakat is Obligatory
+              </div>
+              <div class="text-xl font-bold mt-1">
+                Amount Due: {{ formatCurrency(zakatResults.zakatAmount) }}
+              </div>
+            </div>
+          </ng-container>
+          <ng-template #zakatNotDue>
+            <div class="p-4 rounded-md bg-yellow-50 border border-yellow-300 text-yellow-700">
+              <div class="flex items-center font-semibold">
+                <fa-icon [icon]="faShieldHalved" class="h-5 w-5 mr-2"></fa-icon>
+                Zakat Not Due
+              </div>
+              <div class="mt-1">
+                Your Net Zakatable Wealth is below the Nisab threshold.
+              </div>
+            </div>
+          </ng-template>
+        </div>
+        <div class="pt-6 pb-0 px-0">
+            <p class="text-xs text-muted-foreground">
+              Disclaimer: This calculator provides an estimate for educational purposes. Consult a qualified Islamic scholar for precise Zakat calculation and obligations. Nisab value used is illustrative.
+            </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
